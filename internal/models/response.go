@@ -1,5 +1,22 @@
 package models
 
+import (
+	"github.com/google/uuid"
+	"time"
+)
+
+type Model struct {
+	ID        uuid.UUID `gorm:"primary_key;type:uuid;default:gen_random_uuid()"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+}
+
+//// BeforeCreate hook to generate a UUID before saving a new record
+//func (m *Model) BeforeCreate(tx *gorm.DB) (err error) {
+//	m.ID = uuid.New()
+//	return nil
+//}
+
 type APIResponse struct {
 	Success    bool         `json:"success"`
 	Data       interface{}  `json:"data"`
