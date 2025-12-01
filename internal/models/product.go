@@ -19,11 +19,11 @@ type Product struct {
 }
 
 type CreateProductRequest struct {
-	Name          string  `json:"name" binding:"required,min=2"`
-	CutType       string  `json:"cut_type" binding:"required"`
-	Description   string  `json:"description"`
-	UnitOfMeasure string  `json:"unit_of_measure" binding:"required,oneof=kg grams pcs"`
-	SupplierID    *string `json:"supplier_id"`
+	Name          string        `json:"name" binding:"required,min=2"`
+	CutType       string        `json:"cut_type" binding:"required"`
+	Description   string        `json:"description"`
+	UnitOfMeasure UnitOfMeasure `json:"unit_of_measure" binding:"required,oneof=kg grams pcs"`
+	SupplierID    *string       `json:"supplier_id"`
 }
 
 type UpdateProductRequest struct {
