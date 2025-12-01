@@ -10,6 +10,7 @@ const (
 
 type Product struct {
 	Model
+	Code          string        `json:"code" gorm:"uniqueIndex"` // e.g, "PROD-001234"
 	Name          string        `json:"name" db:"name"`
 	CutType       string        `json:"cut_type" db:"cut_type"`
 	Description   string        `json:"description" db:"description"`

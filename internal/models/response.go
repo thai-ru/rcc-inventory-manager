@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 	"time"
 )
 
@@ -11,11 +12,11 @@ type Model struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-//// BeforeCreate hook to generate a UUID before saving a new record
-//func (m *Model) BeforeCreate(tx *gorm.DB) (err error) {
-//	m.ID = uuid.New()
-//	return nil
-//}
+// BeforeCreate  hook to generate a UUID before saving a new record
+func (m *Model) BeforeCreate(tx *gorm.DB) (err error) {
+	m.ID = uuid.New()
+	return nil
+}
 
 type APIResponse struct {
 	Success    bool         `json:"success"`

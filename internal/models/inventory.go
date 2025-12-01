@@ -1,10 +1,13 @@
 package models
 
-import "time"
+import (
+	"github.com/google/uuid"
+	"time"
+)
 
 type Inventory struct {
 	Model
-	ProductID              string     `json:"product_id" db:"product_id"`
+	ProductID              uuid.UUID  `json:"product_id" db:"product_id"`
 	BatchID                string     `json:"batch_id" db:"batch_id"`
 	Quantity               float64    `json:"quantity" db:"quantity"`
 	ReceivedDate           time.Time  `json:"received_date" db:"received_date"`
@@ -22,7 +25,7 @@ type Inventory struct {
 }
 
 type CreateInventoryRequest struct {
-	ProductID              string     `json:"product_id" binding:"required,uuid"`
+	ProductID              uuid.UUID  `json:"product_id" binding:"required,uuid"`
 	BatchID                string     `json:"batch_id" binding:"required"`
 	Quantity               float64    `json:"quantity" binding:"required"`
 	UnitOfMeasure          string     `json:"unit_of_measure"` // From Product
@@ -42,7 +45,8 @@ type UpdateInventoryRequest struct {
 }
 
 type InventoryFilter struct {
-	ProductID       string
+	ProductID       uuid.UUID
+	Code            string
 	Status          string
 	StorageLocation string
 	AlertLevel      string
